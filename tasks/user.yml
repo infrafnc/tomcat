@@ -1,0 +1,38 @@
+- name: Adiciona grupo dev
+  group:
+    name: dev
+    state: present
+
+- name: Adiciona usuarios dev
+  user:
+    name="{{ userdev }}" state=present groups=dev shell=/bin/bash comment="{{ item.nome }}"
+  with_items:
+    - { id: 'lrocha', nome: 'Leandro Rocha' }
+    - { id: 'eamaro', nome: 'Erick Amaro' }
+    - { id: 'rsouza', nome: 'Robson Souza' }
+  become: yes
+
+- name: criar pasta ssh
+  file: path=/home/{{ item }}/.ssh state=directory owner={{ item }}
+  with_items:
+    - lrocha
+    - kcruz
+    - rgarcia
+    - eamaro
+    - rvicente
+    - rsouza
+  become: yes
+
+- name: copiar chaves para servidor
+  copy:
+    src: /public_key/{{ item }}.txt
+    dest: /home/{{ item }}/.ssh/authorized_keys
+  with_items:
+    - lrocha
+    - rvicente
+    - kcruz
+    - rgarcia
+    - eamaro
+    - rsouza
+  become: yes
+

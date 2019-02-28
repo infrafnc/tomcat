@@ -1,0 +1,5 @@
+---
+devuser:
+  - { id: 'lrocha', nome: 'Leandro Rocha' }
+  - { id: 'eamaro', nome: 'Erick Amaro' }
+  - { id: 'rsouza', nome: 'Robson Souza' }

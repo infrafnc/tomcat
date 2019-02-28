@@ -1,0 +1,9 @@
+---
+    - name: 'Configura serviço do tomcat'
+      copy:
+        src: '/etc/ansible/roles/tomcat/files/tomcat.service'
+        dest: '/etc/systemd/system/tomcat.service'
+      become: yes
+      notify:
+        - Start Tomcat
+

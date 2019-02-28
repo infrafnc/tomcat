@@ -1,0 +1,30 @@
+---
+- name: 'Instala pacote yum-utils'
+  yum:
+    name: 'yum-utils'
+    state: present
+    become: yes
+
+- name: 'Instala Java'
+  yum:
+    name: "{{ java }}"
+    state: latest
+    become: yes
+      
+- name: 'Baixa o arquivo de instalacao do tomcat'
+  get_url:
+    url: "{{ tomcat_wget }}"
+    dest: '/tmp/tomcat.tar.gz'
+
+- name: 'Cria diretório'
+  command: mkdir /usr/local/tomcat
+
+- name: 'Descompacta o tomcat'
+  unarchive:
+    src: '/tmp/tomcat.tar.gz'
+    dest: /usr/local/tomcat
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+    group: tomcat
+    owner: tomcat
+    become: yes
