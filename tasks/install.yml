@@ -1,15 +1,19 @@
 ---
+#- name: Inclui variaveis
+#  include_vars: 
+#    dir: vars
+
 - name: 'Instala pacote yum-utils'
   yum:
     name: 'yum-utils'
     state: present
-    become: yes
+#    become: yes
 
 - name: 'Instala Java'
   yum:
     name: "{{ java }}"
     state: latest
-    become: yes
+#    become: yes
       
 - name: 'Baixa o arquivo de instalacao do tomcat'
   get_url:
