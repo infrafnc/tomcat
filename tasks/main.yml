@@ -1,6 +1,9 @@
 ---
-- name: 'Instala Tomcat'
+- name: Instala Tomcat
   import_tasks: install.yml
 
-- name: 'Start Tomcat'
+- name: Start Tomcat
   import_tasks: service.yml
+
+- name: Configura usuários pro Tomcat
+  import_tasks: user.yml

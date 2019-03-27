@@ -1,0 +1,1 @@
+%dev  ALL= NOPASSWD: /usr/bin/su - tomcat, NOPASSWD: /usr/bin/systemctl restart tomcat

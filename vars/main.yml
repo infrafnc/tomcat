@@ -1,3 +1,8 @@
 ---
 java: java-1.8.0-openjdk-devel
-tomcat_wget: https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz 
+tomcat_wget: http://ftp.unicamp.br/pub/apache/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz
+
+devuser:
+  - { id: 'lrocha', nome: 'Leandro Rocha' }
+  - { id: 'eamaro', nome: 'Erick Amaro' }
+  - { id: 'rsouza', nome: 'Robson Souza' }

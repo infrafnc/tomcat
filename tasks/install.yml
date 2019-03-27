@@ -1,29 +1,36 @@
 ---
-#- name: Inclui variaveis
-#  include_vars: 
-#    dir: vars
+- name: Adiciona grupo tomcat
+  group:
+    name: tomcat
+    state: present
 
-- name: 'Instala pacote yum-utils'
+- name: Adiciona usuario tomcat
+  user:
+    name: tomcat
+    state: present
+
+- name: Instala pacote yum-utils
   yum:
     name: 'yum-utils'
     state: present
-#    become: yes
 
-- name: 'Instala Java'
+- name: Instala Java
   yum:
     name: "{{ java }}"
     state: latest
-#    become: yes
       
-- name: 'Baixa o arquivo de instalacao do tomcat'
+- name: Baixa o arquivo de instalacao do tomcat
   get_url:
     url: "{{ tomcat_wget }}"
     dest: '/tmp/tomcat.tar.gz'
 
-- name: 'Cria diretório'
-  command: mkdir /usr/local/tomcat
+- name: 'Cria o diretório do Tomcat'
+  file:
+    path: /usr/local/tomcat
+    state: directory
+    mode: 0755
 
-- name: 'Descompacta o tomcat'
+- name: Descompacta o tomcat
   unarchive:
     src: '/tmp/tomcat.tar.gz'
     dest: /usr/local/tomcat
@@ -31,4 +38,3 @@
     remote_src: yes
     group: tomcat
     owner: tomcat
-    become: yes
