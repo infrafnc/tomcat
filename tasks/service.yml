@@ -4,6 +4,11 @@
     src: '/etc/ansible/roles/tomcat/files/tomcat.service'
     dest: '/etc/systemd/system/tomcat.service'
   become: yes
-  notify:
-    - Start Tomcat
+  register: servicotomcat
 
+- name: Restarta o serviço do Tomcat se o arquivo for criado com sucesso
+  service: 
+    name: tomcat
+    state: started
+    enabled: yes
+  when: servicotomcat.changed
